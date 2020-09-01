@@ -6,7 +6,8 @@ Screen Caps:<br />
 <a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_19.png">Screen 01</a><br />
 <a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_20.png">Screen 02</a><br />
 <a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_21.png">Screen 03</a><br />
-<a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_17.png">Screen 04</a><br /><br />
+<a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_17.png">Screen 04</a><br />
+<a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_22.png">Screen 05</a><br /><br />
 To do list:<br />
 Do not allow selecting a tile offset placeholder on the tileset edit control<br />
 Add color index swap option on tileset edit tab<br />
