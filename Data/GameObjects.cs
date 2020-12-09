@@ -56,7 +56,8 @@ namespace GoldenAxeEditor.Data
         public ObjectID(int id, string name) { ID = id; Name = name; }
 
         /// <summary>
-        /// Makes sure the given bytes (For export) are either truncated by the original ROM length, padded if not enough bytes, or overridden if the length is bigger than the original ROM length
+        /// Makes sure the given bytes (For export) are either truncated by the original ROM length, 
+        /// padded if not enough bytes, or overridden if the length is bigger than the original ROM length
         /// </summary>
         /// <param name="bytes">The bytes to inspect</param>
         /// <returns>A ROM safe array of bytes, unless overridden</returns>
@@ -82,11 +83,102 @@ namespace GoldenAxeEditor.Data
         }
 
         /// <summary>
-        /// Phantasy Star RLE decompression Refer to: https://www.smspower.org/Development/Compression
+        /// Phantasy Star RLE compression Refer to: https://www.smspower.org/Development/Compression
+        /// </summary>
+        /// <param name="data">The bytes to compress</param>
+        /// <returns>A compressed byte array of bytes</returns>
+        public static byte[] CompressPlanar(byte[] data)
+        {
+            List<byte> compressed = new List<byte>();
+            List<byte>[] bitPlanes = new List<byte>[4];
+            for (int j = 0; j < bitPlanes[0].Count; j++)
+                for (int k = 0; k < 4; k++)
+                    if (j < bitPlanes[k].Count)
+                        bitPlanes[k][j] = data[j];
+
+
+            //List<byte> compressed = new List<byte>();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    int index = i;
+            //    while (index < data.Length)
+            //    {
+            //        int similarByteCount = 1;
+            //        int uniqueByteCount = 1;
+            //        byte uniqueByte = 0;
+            //        List<byte> uniqueBytes = new List<byte>();
+            //        for (int j = 0; j < data.Length; j++)
+            //        {
+            //            if (uniqueByteCount > 1)
+            //            {
+            //                if ((data[i] == data[i - 4]) && (i + 4 < data.Length) && (data[i] == data[i + 4]) || (uniqueByteCount == 127))
+            //                {
+            //                    uniqueByteCount--;
+            //                    uniqueBytes.RemoveAt(uniqueBytes.Count - 1);
+            //                    i--;
+            //                    break;
+            //                }
+            //                else
+            //                {
+            //                    uniqueByteCount++;
+            //                    uniqueBytes.Add(data[i]);
+            //                }
+            //            }
+            //            else if (similarByteCount > 1)
+            //            {
+            //                if (data[i] != data[i - 4] || similarByteCount == 127)
+            //                {
+            //                    i--;
+            //                    break;
+            //                }
+            //                else
+            //                    similarByteCount++;
+            //            }
+            //            else
+            //            {
+            //                if (data[i] == data[i - 4])
+            //                {
+            //                    uniqueByteCount = 0;
+            //                    similarByteCount = 2;
+            //                    uniqueByte = data[i];
+            //                }
+            //                else
+            //                {
+            //                    uniqueByteCount = 2;
+            //                    similarByteCount = 0;
+            //                    uniqueBytes.Add(data[i - 4]);
+            //                    uniqueBytes.Add(data[i]);
+            //                }
+            //            }
+            //        }
+
+            //        if (similarByteCount > 1)
+            //        {
+            //            compressed.Add((byte)similarByteCount);
+            //            compressed.Add(uniqueByte);
+            //            index += similarByteCount * 4;
+            //        }
+            //        else
+            //        {
+            //            compressed.Add((byte)(uniqueByteCount + 128));
+            //            for (int j = 0; j < uniqueBytes.Count; j++)
+            //                compressed.Add(uniqueBytes[j]);
+
+            //            index += uniqueByteCount * 4;
+            //        }
+            //    }
+            //    compressed.Add(0);
+            //}
+            return compressed.ToArray();
+        }
+
+        /// <summary>
+        /// Phantasy Star RLE decompression, data arranged in bit planes
+        /// Refer to: https://www.smspower.org/Development/Compression
         /// </summary>
         /// <param name="data">The bytes to decompress</param>
         /// <returns>A decompressed byte array of bytes</returns>
-        public static byte[] PSRLEDecompress(byte[] data)
+        public static byte[] DecompressPlanar(byte[] data)
         {
             int index = 0;
             int count;
@@ -130,118 +222,76 @@ namespace GoldenAxeEditor.Data
         }
 
         /// <summary>
-        /// Phantasy Star RLE compression Refer to: https://www.smspower.org/Development/Compression
+        /// Phantasy Star RLE decompression, data arranged in linear fashion
+        /// Refer to: https://www.smspower.org/Development/Compression
         /// </summary>
         /// <param name="data">The bytes to compress</param>
-        /// <returns>A compressed byte array of bytes</returns>
-        public static byte[] PSRLECompress(byte[] data)
+        /// <returns>A linear compressed byte array</returns>
+        public static byte[] CompressLinear(byte[] data)
         {
             List<byte> compressed = new List<byte>();
-            for (int i = 0; i < 4; i++)
+            int index = 0;
+            int count;
+            byte value;
+            while (index < data.Length && data[index] != 0)
             {
-                int index = i;
-                while (index < data.Length)
+                if (data[index] < 128)
                 {
-                    int similarByteCount = 1;
-                    int uniqueByteCount = 1;
-                    byte uniqueByte = 0;
-                    List<byte> uniqueBytes = new List<byte>();
-                    for (int j = 0; j < data.Length; j++)
+                    count = data[index];
+                    index++;
+                    value = data[index];
+                    index++;
+                    for (int j = 0; j < count; j++)
+                        compressed.Add(value);
+                }
+                else
+                {
+                    count = data[index] - 128;
+                    index++;
+                    for (int j = 0; j < count; j++)
                     {
-                        if (uniqueByteCount > 1)
-                        {
-                            if ((data[i] == data[i - 4]) && (i + 4 < data.Length) && (data[i] == data[i + 4]) || (uniqueByteCount == 127))
-                            {
-                                uniqueByteCount--;
-                                uniqueBytes.RemoveAt(uniqueBytes.Count - 1);
-                                i--;
-                                break;
-                            }
-                            else
-                            {
-                                uniqueByteCount++;
-                                uniqueBytes.Add(data[i]);
-                            }
-                        }
-                        else if (similarByteCount > 1)
-                        {
-                            if (data[i] != data[i - 4] || similarByteCount == 127)
-                            {
-                                i--;
-                                break;
-                            }
-                            else
-                                similarByteCount++;
-                        }
-                        else
-                        {
-                            if (data[i] == data[i - 4])
-                            {
-                                uniqueByteCount = 0;
-                                similarByteCount = 2;
-                                uniqueByte = data[i];
-                            }
-                            else
-                            {
-                                uniqueByteCount = 2;
-                                similarByteCount = 0;
-                                uniqueBytes.Add(data[i - 4]);
-                                uniqueBytes.Add(data[i]);
-                            }
-                        }
-                    }
-
-                    if (similarByteCount > 1)
-                    {
-                        compressed.Add((byte)similarByteCount);
-                        compressed.Add(uniqueByte);
-                        index += similarByteCount * 4;
-                    }
-                    else
-                    {
-                        compressed.Add((byte)(uniqueByteCount + 128));
-                        for (int j = 0; j < uniqueBytes.Count; j++)
-                            compressed.Add(uniqueBytes[j]);
-
-                        index += uniqueByteCount * 4;
+                        value = data[index];
+                        compressed.Add(value);
+                        index++;
                     }
                 }
-                compressed.Add(0);
             }
             return compressed.ToArray();
         }
 
         /// <summary>
-        /// Zero space decompression
+        /// Phantasy Star RLE decompression, data arranged in linear fashion
+        /// Refer to: https://www.smspower.org/Development/Compression
         /// </summary>
         /// <param name="data">The bytes to decompress</param>
-        /// <returns>A decompressed byte array of tiles</returns>
-        public static byte[] ZeroSpaceDecompress(byte[] data)
+        /// <returns>A linaer decompressed byte array</returns>
+        public static byte[] DecompressLinear(byte[] data)
         {
             List<byte> decompressed = new List<byte>();
             int index = 0;
-            List<byte> terminators = new List<byte>(new byte[] { 3, 5, 7, 8, 11, 12 });
-            while (index < data.Length)
+            int count;
+            byte value;
+            while (index < data.Length && data[index] != 0)
             {
-                if (data[index] != 0)
+                if (data[index] < 128)
                 {
-                    decompressed.Add(data[index]);
+                    count = data[index];
                     index++;
+                    value = data[index];
+                    index++;
+                    for (int j = 0; j < count; j++)
+                        decompressed.Add(value);
                 }
                 else
                 {
-                    byte value = data[index - 1];
-                    if (!terminators.Contains(value))
+                    count = data[index] - 128;
+                    index++;
+                    for (int j = 0; j < count; j++)
                     {
-                        decompressed.Add(0);
-                        index += 1;
-                        continue;
+                        value = data[index];
+                        decompressed.Add(value);
+                        index++;
                     }
-                    decompressed.RemoveAt(decompressed.Count - 1);
-                    for (int j = 0; j < value; j++)
-                        decompressed.Add(0);
-
-                    index += 2;
                 }
             }
             return decompressed.ToArray();
@@ -642,9 +692,16 @@ namespace GoldenAxeEditor.Data
         /// </summary>
         /// <param name="image">The source image to get unique pixel tile data from</param>
         /// <returns>A list of unique tile pixel data, in 32 bit format</returns>
-        public static List<int[]> GetPixelTiles(Bitmap image)
+        public static List<int[]> GetPixelTiles(Bitmap image, int transparentColor, bool offset)
         {
             List<int[]> pixelTiles = new List<int[]>();
+            if (offset)
+            {
+                int[] empty = new int[64];
+                for (int i = 0; i < 64; i++)
+                    empty[i] = transparentColor;
+                pixelTiles.Add(empty);
+            }
             int cols = image.Width / 8;
             int rows = image.Height / 8;
             for (int row = 0; row < rows; row++)

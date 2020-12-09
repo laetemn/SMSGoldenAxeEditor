@@ -38,6 +38,7 @@ namespace GoldenAxeEditor.Forms
         private Palette _palette = null;
         private List<Color> _colors = new List<Color>();
         private int _paletteIndex = 0;
+        private bool _allowDuplicates = false;
 
         /// <summary>
         /// Properties
@@ -53,15 +54,16 @@ namespace GoldenAxeEditor.Forms
         /// <param name="importColors"></param>
         /// <param name="offset"></param>
         /// <param name="size"></param>
-        public ImportForm(Bitmap image, Palette palette, List<Color> importColors, int offset, int paletteIndex)
+        public ImportForm(Bitmap image, Palette palette, List<Color> importColors, int offset, int paletteIndex, bool allowDuplicates)
         {
             InitializeComponent();
             Tileset = new Tileset();
-            Tileset.Pixels = Tileset.GetSMSTiles(image, importColors, false, false);
+            Tileset.Pixels = Tileset.GetSMSTiles(image, importColors, allowDuplicates, false);
             Tileset.Offset = offset;
             _colors = importColors;
             _image = image;
             _paletteIndex = paletteIndex;
+            _allowDuplicates = allowDuplicates;
             List<Color> colors = GetCurrentPalette(palette, paletteIndex);
             pnlTiles.Image = Tileset.GetImage(colors, false, 6);
             _palette = palette;
@@ -76,7 +78,7 @@ namespace GoldenAxeEditor.Forms
             if (_image == null)
                 return;
 
-            Tileset.Pixels = Tileset.GetSMSTiles(_image, _colors, false, chkIgnoreEmpty.Checked);
+            Tileset.Pixels = Tileset.GetSMSTiles(_image, _colors, _allowDuplicates, chkIgnoreEmpty.Checked);
             pnlTiles.Image = Tileset.GetImage(_palette.Colors, false, 6);
             pnlColorIndexes.SetPalette(_colors, _palette.GetPaletteImage(_paletteIndex == 0 ? 0 : 16, _palette.HasEdits));
         }

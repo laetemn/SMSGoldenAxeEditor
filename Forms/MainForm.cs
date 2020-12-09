@@ -38,7 +38,6 @@ namespace GoldenAxeEditor.Forms
         /// Fields
         /// </summary>
         private int _frame = 0;
-        private string _filePath = string.Empty;
         private Sprite _sprite = null;
         private Palette _palette = null;
         private Tileset _tileset = null;
@@ -99,8 +98,10 @@ namespace GoldenAxeEditor.Forms
                 {
                     RomData romData = new RomData(ofd.FileName);
                     foreach (Palette palette in romData.Palettes)
+                    {
                         if (RomData.Palettes.Find(x => x.ID == palette.ID) != null)
                             palette.ColorEdits.AddRange(RomData.Palettes.Find(x => x.ID == palette.ID).ColorEdits.ToArray());
+                    }
 
                     foreach (Tileset tileset in romData.Tilesets)
                     {
@@ -389,7 +390,7 @@ namespace GoldenAxeEditor.Forms
         /// <summary>
         /// Import sprite button click
         /// </summary>
-        private void btnImportSprite_Click(object sender, EventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
             if (_sprite == null || _tileset == null || _tilemap == null)
             {
@@ -402,51 +403,48 @@ namespace GoldenAxeEditor.Forms
                 if (ofd.ShowDialog() != DialogResult.OK)
                     return;
 
+                Bitmap image;
                 using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read))
                 {
-                    using (Bitmap image = (Bitmap)Image.FromStream(fs))
-                    {
-                        List<Color> importColors = Palette.GetColors(image);
-                        if (importColors.Count > 16)
-                        {
-                            MessageBox.Show("The image has more than 16 colors, reduce the image colors and try again.");
-                            return;
-                        }
-                        using (ImportForm form = new ImportForm(image, _palette, importColors, _tileset.Offset, _sprite.PaletteIndex))
-                        {
-                            if (form.ShowDialog() == DialogResult.OK)
-                            {
-                                List<Color> colors = GetCurrentPalette();
-                                _tileset.PixelEdits = form.Tileset.Pixels;
-                                if ((sender as Button).Name == btnImportTileset.Name)
-                                {
-                                    UpdateImages();
-                                    return;
-                                }
-                                using (Bitmap tilesetImage = _tileset.GetImage(255, colors, _tileset.HasEdits))
-                                {
-                                    int x = 0;
-                                    List<int[]> pixelTiles = Tileset.GetPixelTiles(tilesetImage);
-                                    foreach (int id in _sprite.TilemapIDs)
-                                    {
-                                        Tilemap tilemap = RomData.Tilemaps.Find(o => o.ID == id);
-                                        if (tilemap == null)
-                                            continue;
+                    image = (Bitmap)Image.FromStream(fs);
 
-                                        if (tilemap.Size.Height > image.Height || tilemap.Size.Width + x > image.Width)
-                                        {
-                                            MessageBox.Show("The size of the image being imported is not valid to create all the tilemaps for this sprite. Make sure the image is the correct width and height, and try again.");
-                                            break;
-                                        }
-                                        using (Bitmap temp = image.Clone(new Rectangle(new Point(x, image.Height - tilemap.Size.Height), tilemap.Size), PixelFormat.Format32bppArgb))
-                                        {
-                                            tilemap.TileEdits = Tilemap.GetTilesFromImage(pixelTiles, temp, _tilemap.Offset);
-                                        }
-                                        x += tilemap.Size.Width;
-                                    }
-                                    UpdateImages();
-                                }
+                    List<Color> importColors = Palette.GetColors(image);
+                    if (importColors.Count > 16)
+                    {
+                        MessageBox.Show("The image has more than 16 colors, reduce the image colors and try again.");
+                        return;
+                    }
+                    using (ImportForm form = new ImportForm(image, _palette, importColors, _tileset.Offset, _sprite.PaletteIndex, (sender as Button).Name == btnImportTileset.Name))
+                    {
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            List<Color> colors = GetCurrentPalette();
+                            _tileset.PixelEdits = form.Tileset.Pixels;
+                            if ((sender as Button).Name == btnImportTileset.Name)
+                            {
+                                UpdateImages();
+                                return;
                             }
+                            int x = 0;
+                            List<int[]> pixelTiles = Tileset.GetPixelTiles(image, colors[0].ToArgb(), _tileset.Offset > 0);
+                            foreach (int id in _sprite.TilemapIDs)
+                            {
+                                Tilemap tilemap = RomData.Tilemaps.Find(o => o.ID == id);
+                                if (tilemap == null)
+                                    continue;
+
+                                if (tilemap.Size.Height > image.Height || tilemap.Size.Width + x > image.Width)
+                                {
+                                    MessageBox.Show("The size of the image being imported is not valid to create all the tilemaps for this sprite. Make sure the image is the correct width and height, and try again.");
+                                    break;
+                                }
+                                using (Bitmap temp = image.Clone(new Rectangle(new Point(x, image.Height - tilemap.Size.Height), tilemap.Size), PixelFormat.Format32bppArgb))
+                                {
+                                    tilemap.TileEdits = Tilemap.GetTilesFromImage(pixelTiles, temp, _tilemap.Offset);
+                                }
+                                x += tilemap.Size.Width;
+                            }
+                            UpdateImages();
                         }
                     }
                 }

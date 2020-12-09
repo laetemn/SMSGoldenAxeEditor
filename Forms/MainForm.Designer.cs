@@ -74,20 +74,15 @@ namespace GoldenAxeEditor.Forms
             this.pnlSpriteEditor = new System.Windows.Forms.Panel();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabSprite = new System.Windows.Forms.TabPage();
-            this.pnlSprite = new GoldenAxeEditor.Controls.ImageControl();
             this.pnlSpriteTools = new System.Windows.Forms.Panel();
             this.btnRevertPalette = new System.Windows.Forms.Button();
             this.btnRevertSprite = new System.Windows.Forms.Button();
             this.btnImportSprite = new System.Windows.Forms.Button();
             this.lblSelectedPaletteColorValues = new System.Windows.Forms.Label();
             this.grpEditPalette = new System.Windows.Forms.GroupBox();
-            this.pnlPaletteEdit = new GoldenAxeEditor.Controls.PaletteEditControl();
             this.lblSelectedColorValues = new System.Windows.Forms.Label();
-            this.pnlSelectedColor = new GoldenAxeEditor.Controls.ColorControl();
-            this.pnlColorPicker = new GoldenAxeEditor.Controls.ImageControl();
             this.lblSelectedColor = new System.Windows.Forms.Label();
             this.tabTileset = new System.Windows.Forms.TabPage();
-            this.pnlTileset = new GoldenAxeEditor.Controls.TilesetEditControl();
             this.pnlTilesetDataEdit = new System.Windows.Forms.Panel();
             this.chkTilesetOverride = new System.Windows.Forms.CheckBox();
             this.btnTilesetUpdate = new System.Windows.Forms.Button();
@@ -98,16 +93,13 @@ namespace GoldenAxeEditor.Forms
             this.pnlTilesetTools = new System.Windows.Forms.Panel();
             this.btnImportTileset = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlTile = new GoldenAxeEditor.Controls.TileControl();
             this.chkTilesetUseGrid = new System.Windows.Forms.CheckBox();
             this.btnDeselectTile = new System.Windows.Forms.Button();
             this.btnDeleteTile = new System.Windows.Forms.Button();
             this.chkTilesetIndexed = new System.Windows.Forms.CheckBox();
             this.btnRevertTileset = new System.Windows.Forms.Button();
             this.tabTilemap = new System.Windows.Forms.TabPage();
-            this.pnlTilemap = new GoldenAxeEditor.Controls.TilemapEditControl();
             this.pnlTilemapDataEdit = new System.Windows.Forms.Panel();
-            this.chkTilemapOverride = new System.Windows.Forms.CheckBox();
             this.btnTilemapUpdate = new System.Windows.Forms.Button();
             this.nudTilemapRows = new System.Windows.Forms.NumericUpDown();
             this.lblTilemapRows = new System.Windows.Forms.Label();
@@ -116,7 +108,6 @@ namespace GoldenAxeEditor.Forms
             this.lblTilemapPosition = new System.Windows.Forms.Label();
             this.txtTilemapPosition = new System.Windows.Forms.TextBox();
             this.pnlTilemapTools = new System.Windows.Forms.Panel();
-            this.pnlTiles = new GoldenAxeEditor.Controls.TilesControl();
             this.pnlTilemapToolsContainer = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkTileXFlip = new System.Windows.Forms.CheckBox();
@@ -141,6 +132,18 @@ namespace GoldenAxeEditor.Forms
             this.ssMain = new System.Windows.Forms.StatusStrip();
             this.tsslObjectType = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nudTilemapOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.lblTilemapOffsetY = new System.Windows.Forms.Label();
+            this.nudTilemapOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.lblTilemapOffsetX = new System.Windows.Forms.Label();
+            this.pnlSprite = new GoldenAxeEditor.Controls.ImageControl();
+            this.pnlPaletteEdit = new GoldenAxeEditor.Controls.PaletteEditControl();
+            this.pnlSelectedColor = new GoldenAxeEditor.Controls.ColorControl();
+            this.pnlColorPicker = new GoldenAxeEditor.Controls.ImageControl();
+            this.pnlTileset = new GoldenAxeEditor.Controls.TilesetEditControl();
+            this.pnlTile = new GoldenAxeEditor.Controls.TileControl();
+            this.pnlTilemap = new GoldenAxeEditor.Controls.TilemapEditControl();
+            this.pnlTiles = new GoldenAxeEditor.Controls.TilesControl();
             this.mnuMain.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlSpriteEditor.SuspendLayout();
@@ -163,6 +166,8 @@ namespace GoldenAxeEditor.Forms
             this.pnlSpriteListBorder.SuspendLayout();
             this.pnlSpriteListTools.SuspendLayout();
             this.ssMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTilemapOffsetY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTilemapOffsetX)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuMain
@@ -371,31 +376,6 @@ namespace GoldenAxeEditor.Forms
             this.tabSprite.TabIndex = 0;
             this.tabSprite.Text = "Sprite";
             // 
-            // pnlSprite
-            // 
-            this.pnlSprite.AutoScroll = true;
-            this.pnlSprite.AutoScrollMinSize = new System.Drawing.Size(405, 469);
-            this.pnlSprite.BackColor = System.Drawing.Color.Black;
-            this.pnlSprite.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlSprite.Centered = true;
-            this.pnlSprite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSprite.HatchBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
-            this.pnlSprite.HatchForeColor = System.Drawing.Color.White;
-            this.pnlSprite.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlSprite.Image = null;
-            this.pnlSprite.ImageAlpha = 1F;
-            this.pnlSprite.ImageScale = 1;
-            this.pnlSprite.Location = new System.Drawing.Point(3, 3);
-            this.pnlSprite.MinimumScale = 1;
-            this.pnlSprite.Name = "pnlSprite";
-            this.pnlSprite.Size = new System.Drawing.Size(405, 469);
-            this.pnlSprite.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlSprite.TabIndex = 0;
-            this.pnlSprite.UseCanvas = false;
-            this.pnlSprite.UseHatch = true;
-            this.pnlSprite.UseMouseWheelScaling = true;
-            this.pnlSprite.Click += new System.EventHandler(this.pnlColorPicker_Click);
-            // 
             // pnlSpriteTools
             // 
             this.pnlSpriteTools.Controls.Add(this.btnRevertPalette);
@@ -441,7 +421,7 @@ namespace GoldenAxeEditor.Forms
             this.btnImportSprite.TabIndex = 0;
             this.btnImportSprite.Text = "Import Sprite";
             this.btnImportSprite.UseVisualStyleBackColor = true;
-            this.btnImportSprite.Click += new System.EventHandler(this.btnImportSprite_Click);
+            this.btnImportSprite.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // lblSelectedPaletteColorValues
             // 
@@ -462,14 +442,6 @@ namespace GoldenAxeEditor.Forms
             this.grpEditPalette.TabStop = false;
             this.grpEditPalette.Text = "Edit Palette";
             // 
-            // pnlPaletteEdit
-            // 
-            this.pnlPaletteEdit.Location = new System.Drawing.Point(14, 24);
-            this.pnlPaletteEdit.Name = "pnlPaletteEdit";
-            this.pnlPaletteEdit.Size = new System.Drawing.Size(127, 94);
-            this.pnlPaletteEdit.TabIndex = 0;
-            this.pnlPaletteEdit.SelectedColorChanged += new GoldenAxeEditor.Controls.PaletteEditControl.SelectedColorChangedHandler(this.pnlPaletteEdit_SelectedColorChanged);
-            // 
             // lblSelectedColorValues
             // 
             this.lblSelectedColorValues.Location = new System.Drawing.Point(6, 112);
@@ -478,53 +450,6 @@ namespace GoldenAxeEditor.Forms
             this.lblSelectedColorValues.TabIndex = 5;
             this.lblSelectedColorValues.Text = "Red: 255 Green: 255 Blue: 255";
             this.lblSelectedColorValues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlSelectedColor
-            // 
-            this.pnlSelectedColor.AutoScroll = true;
-            this.pnlSelectedColor.AutoScrollMinSize = new System.Drawing.Size(152, 14);
-            this.pnlSelectedColor.BackColor = System.Drawing.Color.White;
-            this.pnlSelectedColor.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlSelectedColor.Centered = false;
-            this.pnlSelectedColor.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlSelectedColor.HatchForeColor = System.Drawing.Color.White;
-            this.pnlSelectedColor.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlSelectedColor.Image = null;
-            this.pnlSelectedColor.ImageAlpha = 1F;
-            this.pnlSelectedColor.ImageScale = 1;
-            this.pnlSelectedColor.Location = new System.Drawing.Point(8, 96);
-            this.pnlSelectedColor.MinimumScale = 1;
-            this.pnlSelectedColor.Name = "pnlSelectedColor";
-            this.pnlSelectedColor.Selected = false;
-            this.pnlSelectedColor.Size = new System.Drawing.Size(152, 14);
-            this.pnlSelectedColor.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlSelectedColor.TabIndex = 4;
-            this.pnlSelectedColor.UseCanvas = false;
-            this.pnlSelectedColor.UseHatch = false;
-            this.pnlSelectedColor.UseMouseWheelScaling = false;
-            // 
-            // pnlColorPicker
-            // 
-            this.pnlColorPicker.AutoScroll = true;
-            this.pnlColorPicker.AutoScrollMinSize = new System.Drawing.Size(162, 139);
-            this.pnlColorPicker.Canvas = new System.Drawing.Size(162, 139);
-            this.pnlColorPicker.Centered = false;
-            this.pnlColorPicker.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlColorPicker.HatchForeColor = System.Drawing.Color.White;
-            this.pnlColorPicker.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlColorPicker.Image = global::GoldenAxeEditor.Properties.Resources.color_wheel;
-            this.pnlColorPicker.ImageAlpha = 1F;
-            this.pnlColorPicker.ImageScale = 1;
-            this.pnlColorPicker.Location = new System.Drawing.Point(3, 128);
-            this.pnlColorPicker.MinimumScale = 1;
-            this.pnlColorPicker.Name = "pnlColorPicker";
-            this.pnlColorPicker.Size = new System.Drawing.Size(165, 144);
-            this.pnlColorPicker.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlColorPicker.TabIndex = 6;
-            this.pnlColorPicker.UseCanvas = false;
-            this.pnlColorPicker.UseHatch = false;
-            this.pnlColorPicker.UseMouseWheelScaling = false;
-            this.pnlColorPicker.Click += new System.EventHandler(this.pnlColorPicker_Click);
             // 
             // lblSelectedColor
             // 
@@ -547,34 +472,6 @@ namespace GoldenAxeEditor.Forms
             this.tabTileset.Size = new System.Drawing.Size(576, 475);
             this.tabTileset.TabIndex = 1;
             this.tabTileset.Text = "Tileset";
-            // 
-            // pnlTileset
-            // 
-            this.pnlTileset.AutoScroll = true;
-            this.pnlTileset.AutoScrollMinSize = new System.Drawing.Size(8, 8);
-            this.pnlTileset.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlTileset.Centered = true;
-            this.pnlTileset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTileset.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlTileset.HatchForeColor = System.Drawing.Color.White;
-            this.pnlTileset.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlTileset.Image = null;
-            this.pnlTileset.ImageAlpha = 1F;
-            this.pnlTileset.ImageScale = 1;
-            this.pnlTileset.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.pnlTileset.Indexed = false;
-            this.pnlTileset.Location = new System.Drawing.Point(3, 32);
-            this.pnlTileset.MinimumScale = 1;
-            this.pnlTileset.Name = "pnlTileset";
-            this.pnlTileset.Size = new System.Drawing.Size(405, 440);
-            this.pnlTileset.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlTileset.TabIndex = 1;
-            this.pnlTileset.UseCanvas = true;
-            this.pnlTileset.UseGrid = true;
-            this.pnlTileset.UseHatch = true;
-            this.pnlTileset.UseMouseWheelScaling = true;
-            this.pnlTileset.TileSelectionChanged += new GoldenAxeEditor.Controls.TilesetEditControl.TileSelectionHandler(this.pnlTileset_TileSelectionChanged);
-            this.pnlTileset.TilesChanged += new GoldenAxeEditor.Controls.TilesetEditControl.TilesChangedHandler(this.pnlTileset_TileChanged);
             // 
             // pnlTilesetDataEdit
             // 
@@ -666,7 +563,7 @@ namespace GoldenAxeEditor.Forms
             this.btnImportTileset.TabIndex = 0;
             this.btnImportTileset.Text = "Import Tileset";
             this.btnImportTileset.UseVisualStyleBackColor = true;
-            this.btnImportTileset.Click += new System.EventHandler(this.btnImportSprite_Click);
+            this.btnImportTileset.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // label1
             // 
@@ -676,30 +573,6 @@ namespace GoldenAxeEditor.Forms
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Selected Tile:";
-            // 
-            // pnlTile
-            // 
-            this.pnlTile.AutoScroll = true;
-            this.pnlTile.AutoScrollMinSize = new System.Drawing.Size(144, 144);
-            this.pnlTile.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlTile.Centered = false;
-            this.pnlTile.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlTile.HatchForeColor = System.Drawing.Color.White;
-            this.pnlTile.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlTile.Image = null;
-            this.pnlTile.ImageAlpha = 1F;
-            this.pnlTile.ImageScale = 1;
-            this.pnlTile.Location = new System.Drawing.Point(12, 138);
-            this.pnlTile.MinimumScale = 1;
-            this.pnlTile.Name = "pnlTile";
-            this.pnlTile.Palette = ((System.Collections.Generic.List<System.Drawing.Color>)(resources.GetObject("pnlTile.Palette")));
-            this.pnlTile.Pixels = ((System.Collections.Generic.List<byte>)(resources.GetObject("pnlTile.Pixels")));
-            this.pnlTile.Size = new System.Drawing.Size(144, 144);
-            this.pnlTile.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlTile.TabIndex = 7;
-            this.pnlTile.UseCanvas = false;
-            this.pnlTile.UseHatch = true;
-            this.pnlTile.UseMouseWheelScaling = false;
             // 
             // chkTilesetUseGrid
             // 
@@ -768,35 +641,12 @@ namespace GoldenAxeEditor.Forms
             this.tabTilemap.TabIndex = 2;
             this.tabTilemap.Text = "Tilemap";
             // 
-            // pnlTilemap
-            // 
-            this.pnlTilemap.AutoScroll = true;
-            this.pnlTilemap.AutoScrollMinSize = new System.Drawing.Size(405, 440);
-            this.pnlTilemap.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlTilemap.Centered = true;
-            this.pnlTilemap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTilemap.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlTilemap.HatchForeColor = System.Drawing.Color.White;
-            this.pnlTilemap.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlTilemap.Image = null;
-            this.pnlTilemap.ImageAlpha = 1F;
-            this.pnlTilemap.ImageScale = 1;
-            this.pnlTilemap.Indexed = false;
-            this.pnlTilemap.Location = new System.Drawing.Point(3, 32);
-            this.pnlTilemap.MinimumScale = 1;
-            this.pnlTilemap.Name = "pnlTilemap";
-            this.pnlTilemap.Size = new System.Drawing.Size(405, 440);
-            this.pnlTilemap.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlTilemap.TabIndex = 1;
-            this.pnlTilemap.UseCanvas = false;
-            this.pnlTilemap.UseGrid = true;
-            this.pnlTilemap.UseHatch = true;
-            this.pnlTilemap.UseMouseWheelScaling = true;
-            this.pnlTilemap.TileChanged += new GoldenAxeEditor.Controls.TilemapEditControl.TileChangedHandler(this.pnlTilemap_TileChanged);
-            // 
             // pnlTilemapDataEdit
             // 
-            this.pnlTilemapDataEdit.Controls.Add(this.chkTilemapOverride);
+            this.pnlTilemapDataEdit.Controls.Add(this.nudTilemapOffsetY);
+            this.pnlTilemapDataEdit.Controls.Add(this.lblTilemapOffsetY);
+            this.pnlTilemapDataEdit.Controls.Add(this.nudTilemapOffsetX);
+            this.pnlTilemapDataEdit.Controls.Add(this.lblTilemapOffsetX);
             this.pnlTilemapDataEdit.Controls.Add(this.btnTilemapUpdate);
             this.pnlTilemapDataEdit.Controls.Add(this.nudTilemapRows);
             this.pnlTilemapDataEdit.Controls.Add(this.lblTilemapRows);
@@ -810,21 +660,11 @@ namespace GoldenAxeEditor.Forms
             this.pnlTilemapDataEdit.Size = new System.Drawing.Size(405, 29);
             this.pnlTilemapDataEdit.TabIndex = 0;
             // 
-            // chkTilemapOverride
-            // 
-            this.chkTilemapOverride.AutoSize = true;
-            this.chkTilemapOverride.Location = new System.Drawing.Point(264, 6);
-            this.chkTilemapOverride.Name = "chkTilemapOverride";
-            this.chkTilemapOverride.Size = new System.Drawing.Size(70, 17);
-            this.chkTilemapOverride.TabIndex = 6;
-            this.chkTilemapOverride.Text = "Override";
-            this.chkTilemapOverride.UseVisualStyleBackColor = true;
-            // 
             // btnTilemapUpdate
             // 
-            this.btnTilemapUpdate.Location = new System.Drawing.Point(336, 3);
+            this.btnTilemapUpdate.Location = new System.Drawing.Point(346, 3);
             this.btnTilemapUpdate.Name = "btnTilemapUpdate";
-            this.btnTilemapUpdate.Size = new System.Drawing.Size(64, 23);
+            this.btnTilemapUpdate.Size = new System.Drawing.Size(56, 23);
             this.btnTilemapUpdate.TabIndex = 7;
             this.btnTilemapUpdate.Text = "Update";
             this.btnTilemapUpdate.UseVisualStyleBackColor = true;
@@ -832,7 +672,7 @@ namespace GoldenAxeEditor.Forms
             // 
             // nudTilemapRows
             // 
-            this.nudTilemapRows.Location = new System.Drawing.Point(216, 3);
+            this.nudTilemapRows.Location = new System.Drawing.Point(192, 3);
             this.nudTilemapRows.Maximum = new decimal(new int[] {
             255,
             0,
@@ -855,7 +695,7 @@ namespace GoldenAxeEditor.Forms
             // lblTilemapRows
             // 
             this.lblTilemapRows.AutoSize = true;
-            this.lblTilemapRows.Location = new System.Drawing.Point(176, 8);
+            this.lblTilemapRows.Location = new System.Drawing.Point(152, 8);
             this.lblTilemapRows.Name = "lblTilemapRows";
             this.lblTilemapRows.Size = new System.Drawing.Size(38, 13);
             this.lblTilemapRows.TabIndex = 4;
@@ -863,7 +703,7 @@ namespace GoldenAxeEditor.Forms
             // 
             // nudTilemapColumns
             // 
-            this.nudTilemapColumns.Location = new System.Drawing.Point(136, 3);
+            this.nudTilemapColumns.Location = new System.Drawing.Point(112, 3);
             this.nudTilemapColumns.Maximum = new decimal(new int[] {
             255,
             0,
@@ -886,7 +726,7 @@ namespace GoldenAxeEditor.Forms
             // lblTilemapColumns
             // 
             this.lblTilemapColumns.AutoSize = true;
-            this.lblTilemapColumns.Location = new System.Drawing.Point(104, 8);
+            this.lblTilemapColumns.Location = new System.Drawing.Point(80, 8);
             this.lblTilemapColumns.Name = "lblTilemapColumns";
             this.lblTilemapColumns.Size = new System.Drawing.Size(32, 13);
             this.lblTilemapColumns.TabIndex = 2;
@@ -897,13 +737,13 @@ namespace GoldenAxeEditor.Forms
             this.lblTilemapPosition.AutoSize = true;
             this.lblTilemapPosition.Location = new System.Drawing.Point(0, 8);
             this.lblTilemapPosition.Name = "lblTilemapPosition";
-            this.lblTilemapPosition.Size = new System.Drawing.Size(52, 13);
+            this.lblTilemapPosition.Size = new System.Drawing.Size(28, 13);
             this.lblTilemapPosition.TabIndex = 0;
-            this.lblTilemapPosition.Text = "Position:";
+            this.lblTilemapPosition.Text = "Pos:";
             // 
             // txtTilemapPosition
             // 
-            this.txtTilemapPosition.Location = new System.Drawing.Point(56, 3);
+            this.txtTilemapPosition.Location = new System.Drawing.Point(32, 3);
             this.txtTilemapPosition.Name = "txtTilemapPosition";
             this.txtTilemapPosition.Size = new System.Drawing.Size(48, 22);
             this.txtTilemapPosition.TabIndex = 1;
@@ -917,37 +757,6 @@ namespace GoldenAxeEditor.Forms
             this.pnlTilemapTools.Name = "pnlTilemapTools";
             this.pnlTilemapTools.Size = new System.Drawing.Size(165, 469);
             this.pnlTilemapTools.TabIndex = 2;
-            // 
-            // pnlTiles
-            // 
-            this.pnlTiles.AllowSelection = true;
-            this.pnlTiles.AutoScroll = true;
-            this.pnlTiles.AutoScrollMinSize = new System.Drawing.Size(444, 876);
-            this.pnlTiles.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlTiles.Canvas = new System.Drawing.Size(8, 8);
-            this.pnlTiles.Centered = false;
-            this.pnlTiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTiles.HatchBackColor = System.Drawing.Color.DarkGray;
-            this.pnlTiles.HatchForeColor = System.Drawing.Color.White;
-            this.pnlTiles.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
-            this.pnlTiles.Image = null;
-            this.pnlTiles.ImageAlpha = 1F;
-            this.pnlTiles.ImageScale = 3;
-            this.pnlTiles.Indexed = false;
-            this.pnlTiles.Location = new System.Drawing.Point(0, 160);
-            this.pnlTiles.MinimumScale = 1;
-            this.pnlTiles.Name = "pnlTiles";
-            this.pnlTiles.Offset = 0;
-            this.pnlTiles.Size = new System.Drawing.Size(165, 309);
-            this.pnlTiles.SnapSize = new System.Drawing.Size(8, 8);
-            this.pnlTiles.TabIndex = 1;
-            this.pnlTiles.TileCount = 0;
-            this.pnlTiles.TileID = 0;
-            this.pnlTiles.UseCanvas = false;
-            this.pnlTiles.UseGrid = true;
-            this.pnlTiles.UseHatch = false;
-            this.pnlTiles.UseMouseWheelScaling = false;
-            this.pnlTiles.TileSelectionChanged += new GoldenAxeEditor.Controls.TilesControl.TileSelectionHandler(this.pnlTiles_TileSelectionChanged);
             // 
             // pnlTilemapToolsContainer
             // 
@@ -1002,9 +811,9 @@ namespace GoldenAxeEditor.Forms
             this.chkTilePalette.AutoSize = true;
             this.chkTilePalette.Location = new System.Drawing.Point(64, 24);
             this.chkTilePalette.Name = "chkTilePalette";
-            this.chkTilePalette.Size = new System.Drawing.Size(94, 17);
+            this.chkTilePalette.Size = new System.Drawing.Size(83, 17);
             this.chkTilePalette.TabIndex = 2;
-            this.chkTilePalette.Text = "Sprite Palette";
+            this.chkTilePalette.Text = "SPR Palette";
             this.chkTilePalette.UseVisualStyleBackColor = true;
             // 
             // chkTilePriority
@@ -1203,6 +1012,237 @@ namespace GoldenAxeEditor.Forms
             this.tsslInfo.Name = "tsslInfo";
             this.tsslInfo.Size = new System.Drawing.Size(0, 17);
             // 
+            // nudTilemapOffsetY
+            // 
+            this.nudTilemapOffsetY.Location = new System.Drawing.Point(304, 3);
+            this.nudTilemapOffsetY.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudTilemapOffsetY.Name = "nudTilemapOffsetY";
+            this.nudTilemapOffsetY.Size = new System.Drawing.Size(40, 22);
+            this.nudTilemapOffsetY.TabIndex = 11;
+            // 
+            // lblTilemapOffsetY
+            // 
+            this.lblTilemapOffsetY.AutoSize = true;
+            this.lblTilemapOffsetY.Location = new System.Drawing.Point(288, 8);
+            this.lblTilemapOffsetY.Name = "lblTilemapOffsetY";
+            this.lblTilemapOffsetY.Size = new System.Drawing.Size(15, 13);
+            this.lblTilemapOffsetY.TabIndex = 10;
+            this.lblTilemapOffsetY.Text = "Y:";
+            // 
+            // nudTilemapOffsetX
+            // 
+            this.nudTilemapOffsetX.Location = new System.Drawing.Point(248, 3);
+            this.nudTilemapOffsetX.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudTilemapOffsetX.Name = "nudTilemapOffsetX";
+            this.nudTilemapOffsetX.Size = new System.Drawing.Size(40, 22);
+            this.nudTilemapOffsetX.TabIndex = 9;
+            // 
+            // lblTilemapOffsetX
+            // 
+            this.lblTilemapOffsetX.AutoSize = true;
+            this.lblTilemapOffsetX.Location = new System.Drawing.Point(232, 8);
+            this.lblTilemapOffsetX.Name = "lblTilemapOffsetX";
+            this.lblTilemapOffsetX.Size = new System.Drawing.Size(16, 13);
+            this.lblTilemapOffsetX.TabIndex = 8;
+            this.lblTilemapOffsetX.Text = "X:";
+            // 
+            // pnlSprite
+            // 
+            this.pnlSprite.AutoScroll = true;
+            this.pnlSprite.AutoScrollMinSize = new System.Drawing.Size(405, 469);
+            this.pnlSprite.BackColor = System.Drawing.Color.Black;
+            this.pnlSprite.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlSprite.Centered = true;
+            this.pnlSprite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSprite.HatchBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.pnlSprite.HatchForeColor = System.Drawing.Color.White;
+            this.pnlSprite.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlSprite.Image = null;
+            this.pnlSprite.ImageAlpha = 1F;
+            this.pnlSprite.ImageScale = 1;
+            this.pnlSprite.Location = new System.Drawing.Point(3, 3);
+            this.pnlSprite.MinimumScale = 1;
+            this.pnlSprite.Name = "pnlSprite";
+            this.pnlSprite.Size = new System.Drawing.Size(405, 469);
+            this.pnlSprite.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlSprite.TabIndex = 0;
+            this.pnlSprite.UseCanvas = false;
+            this.pnlSprite.UseHatch = true;
+            this.pnlSprite.UseMouseWheelScaling = true;
+            this.pnlSprite.Click += new System.EventHandler(this.pnlColorPicker_Click);
+            // 
+            // pnlPaletteEdit
+            // 
+            this.pnlPaletteEdit.Location = new System.Drawing.Point(14, 24);
+            this.pnlPaletteEdit.Name = "pnlPaletteEdit";
+            this.pnlPaletteEdit.Size = new System.Drawing.Size(127, 94);
+            this.pnlPaletteEdit.TabIndex = 0;
+            this.pnlPaletteEdit.SelectedColorChanged += new GoldenAxeEditor.Controls.PaletteEditControl.SelectedColorChangedHandler(this.pnlPaletteEdit_SelectedColorChanged);
+            // 
+            // pnlSelectedColor
+            // 
+            this.pnlSelectedColor.AutoScroll = true;
+            this.pnlSelectedColor.AutoScrollMinSize = new System.Drawing.Size(152, 14);
+            this.pnlSelectedColor.BackColor = System.Drawing.Color.White;
+            this.pnlSelectedColor.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlSelectedColor.Centered = false;
+            this.pnlSelectedColor.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlSelectedColor.HatchForeColor = System.Drawing.Color.White;
+            this.pnlSelectedColor.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlSelectedColor.Image = null;
+            this.pnlSelectedColor.ImageAlpha = 1F;
+            this.pnlSelectedColor.ImageScale = 1;
+            this.pnlSelectedColor.Location = new System.Drawing.Point(8, 96);
+            this.pnlSelectedColor.MinimumScale = 1;
+            this.pnlSelectedColor.Name = "pnlSelectedColor";
+            this.pnlSelectedColor.Selected = false;
+            this.pnlSelectedColor.Size = new System.Drawing.Size(152, 14);
+            this.pnlSelectedColor.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlSelectedColor.TabIndex = 4;
+            this.pnlSelectedColor.UseCanvas = false;
+            this.pnlSelectedColor.UseHatch = false;
+            this.pnlSelectedColor.UseMouseWheelScaling = false;
+            // 
+            // pnlColorPicker
+            // 
+            this.pnlColorPicker.AutoScroll = true;
+            this.pnlColorPicker.AutoScrollMinSize = new System.Drawing.Size(162, 139);
+            this.pnlColorPicker.Canvas = new System.Drawing.Size(162, 139);
+            this.pnlColorPicker.Centered = false;
+            this.pnlColorPicker.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlColorPicker.HatchForeColor = System.Drawing.Color.White;
+            this.pnlColorPicker.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlColorPicker.Image = global::GoldenAxeEditor.Properties.Resources.color_wheel;
+            this.pnlColorPicker.ImageAlpha = 1F;
+            this.pnlColorPicker.ImageScale = 1;
+            this.pnlColorPicker.Location = new System.Drawing.Point(3, 128);
+            this.pnlColorPicker.MinimumScale = 1;
+            this.pnlColorPicker.Name = "pnlColorPicker";
+            this.pnlColorPicker.Size = new System.Drawing.Size(165, 144);
+            this.pnlColorPicker.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlColorPicker.TabIndex = 6;
+            this.pnlColorPicker.UseCanvas = false;
+            this.pnlColorPicker.UseHatch = false;
+            this.pnlColorPicker.UseMouseWheelScaling = false;
+            this.pnlColorPicker.Click += new System.EventHandler(this.pnlColorPicker_Click);
+            // 
+            // pnlTileset
+            // 
+            this.pnlTileset.AutoScroll = true;
+            this.pnlTileset.AutoScrollMinSize = new System.Drawing.Size(8, 8);
+            this.pnlTileset.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlTileset.Centered = true;
+            this.pnlTileset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTileset.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlTileset.HatchForeColor = System.Drawing.Color.White;
+            this.pnlTileset.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlTileset.Image = null;
+            this.pnlTileset.ImageAlpha = 1F;
+            this.pnlTileset.ImageScale = 1;
+            this.pnlTileset.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.pnlTileset.Indexed = false;
+            this.pnlTileset.Location = new System.Drawing.Point(3, 32);
+            this.pnlTileset.MinimumScale = 1;
+            this.pnlTileset.Name = "pnlTileset";
+            this.pnlTileset.Size = new System.Drawing.Size(405, 440);
+            this.pnlTileset.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlTileset.TabIndex = 1;
+            this.pnlTileset.UseCanvas = true;
+            this.pnlTileset.UseGrid = true;
+            this.pnlTileset.UseHatch = true;
+            this.pnlTileset.UseMouseWheelScaling = true;
+            this.pnlTileset.TileSelectionChanged += new GoldenAxeEditor.Controls.TilesetEditControl.TileSelectionHandler(this.pnlTileset_TileSelectionChanged);
+            this.pnlTileset.TilesChanged += new GoldenAxeEditor.Controls.TilesetEditControl.TilesChangedHandler(this.pnlTileset_TileChanged);
+            // 
+            // pnlTile
+            // 
+            this.pnlTile.AutoScroll = true;
+            this.pnlTile.AutoScrollMinSize = new System.Drawing.Size(144, 144);
+            this.pnlTile.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlTile.Centered = false;
+            this.pnlTile.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlTile.HatchForeColor = System.Drawing.Color.White;
+            this.pnlTile.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlTile.Image = null;
+            this.pnlTile.ImageAlpha = 1F;
+            this.pnlTile.ImageScale = 1;
+            this.pnlTile.Location = new System.Drawing.Point(12, 138);
+            this.pnlTile.MinimumScale = 1;
+            this.pnlTile.Name = "pnlTile";
+            this.pnlTile.Palette = ((System.Collections.Generic.List<System.Drawing.Color>)(resources.GetObject("pnlTile.Palette")));
+            this.pnlTile.Pixels = ((System.Collections.Generic.List<byte>)(resources.GetObject("pnlTile.Pixels")));
+            this.pnlTile.Size = new System.Drawing.Size(144, 144);
+            this.pnlTile.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlTile.TabIndex = 7;
+            this.pnlTile.UseCanvas = false;
+            this.pnlTile.UseHatch = true;
+            this.pnlTile.UseMouseWheelScaling = false;
+            // 
+            // pnlTilemap
+            // 
+            this.pnlTilemap.AutoScroll = true;
+            this.pnlTilemap.AutoScrollMinSize = new System.Drawing.Size(405, 440);
+            this.pnlTilemap.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlTilemap.Centered = true;
+            this.pnlTilemap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTilemap.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlTilemap.HatchForeColor = System.Drawing.Color.White;
+            this.pnlTilemap.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlTilemap.Image = null;
+            this.pnlTilemap.ImageAlpha = 1F;
+            this.pnlTilemap.ImageScale = 1;
+            this.pnlTilemap.Indexed = false;
+            this.pnlTilemap.Location = new System.Drawing.Point(3, 32);
+            this.pnlTilemap.MinimumScale = 1;
+            this.pnlTilemap.Name = "pnlTilemap";
+            this.pnlTilemap.Size = new System.Drawing.Size(405, 440);
+            this.pnlTilemap.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlTilemap.TabIndex = 1;
+            this.pnlTilemap.UseCanvas = false;
+            this.pnlTilemap.UseGrid = true;
+            this.pnlTilemap.UseHatch = true;
+            this.pnlTilemap.UseMouseWheelScaling = true;
+            this.pnlTilemap.TileChanged += new GoldenAxeEditor.Controls.TilemapEditControl.TileChangedHandler(this.pnlTilemap_TileChanged);
+            // 
+            // pnlTiles
+            // 
+            this.pnlTiles.AllowSelection = true;
+            this.pnlTiles.AutoScroll = true;
+            this.pnlTiles.AutoScrollMinSize = new System.Drawing.Size(444, 876);
+            this.pnlTiles.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlTiles.Canvas = new System.Drawing.Size(8, 8);
+            this.pnlTiles.Centered = false;
+            this.pnlTiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTiles.HatchBackColor = System.Drawing.Color.DarkGray;
+            this.pnlTiles.HatchForeColor = System.Drawing.Color.White;
+            this.pnlTiles.HatchStyle = System.Drawing.Drawing2D.HatchStyle.OutlinedDiamond;
+            this.pnlTiles.Image = null;
+            this.pnlTiles.ImageAlpha = 1F;
+            this.pnlTiles.ImageScale = 3;
+            this.pnlTiles.Indexed = false;
+            this.pnlTiles.Location = new System.Drawing.Point(0, 160);
+            this.pnlTiles.MinimumScale = 1;
+            this.pnlTiles.Name = "pnlTiles";
+            this.pnlTiles.Offset = 0;
+            this.pnlTiles.Size = new System.Drawing.Size(165, 309);
+            this.pnlTiles.SnapSize = new System.Drawing.Size(8, 8);
+            this.pnlTiles.TabIndex = 1;
+            this.pnlTiles.TileCount = 0;
+            this.pnlTiles.TileID = 0;
+            this.pnlTiles.UseCanvas = false;
+            this.pnlTiles.UseGrid = true;
+            this.pnlTiles.UseHatch = false;
+            this.pnlTiles.UseMouseWheelScaling = false;
+            this.pnlTiles.TileSelectionChanged += new GoldenAxeEditor.Controls.TilesControl.TileSelectionHandler(this.pnlTiles_TileSelectionChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1247,6 +1287,8 @@ namespace GoldenAxeEditor.Forms
             this.pnlSpriteListTools.PerformLayout();
             this.ssMain.ResumeLayout(false);
             this.ssMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTilemapOffsetY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTilemapOffsetX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1343,7 +1385,10 @@ namespace GoldenAxeEditor.Forms
         private System.Windows.Forms.ToolStripMenuItem textEditToolStripMenuItem;
         private System.Windows.Forms.Panel pnlTilesetDataEdit;
         private System.Windows.Forms.CheckBox chkTilesetOverride;
-        private System.Windows.Forms.CheckBox chkTilemapOverride;
+        private System.Windows.Forms.NumericUpDown nudTilemapOffsetY;
+        private System.Windows.Forms.Label lblTilemapOffsetY;
+        private System.Windows.Forms.NumericUpDown nudTilemapOffsetX;
+        private System.Windows.Forms.Label lblTilemapOffsetX;
     }
 }
 

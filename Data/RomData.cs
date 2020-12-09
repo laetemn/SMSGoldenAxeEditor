@@ -34,7 +34,7 @@ namespace GoldenAxeEditor.Data
         /// <summary>
         /// Fields
         /// </summary>
-        private Dictionary<byte, byte> _colorValues = new Dictionary<byte, byte> { { 0, 0 },  { 1, 85 }, { 2, 170 },  { 3, 255 } };
+        private readonly Dictionary<byte, byte> _colorValues = new Dictionary<byte, byte> { { 0, 0 },  { 1, 85 }, { 2, 170 },  { 3, 255 } };
 
     /// <summary>
     /// Properties
@@ -105,29 +105,32 @@ namespace GoldenAxeEditor.Data
 
             foreach (Tileset tileset in Tilesets)
             {
-                //if (tileset.ID != 83461)
-                //    continue;
-
-                byte[] data = Data.GetRange(tileset.ID, tileset.Length).ToArray();
-                data = Decompress(tileset.Compression, data);
-                tileset.DecompressedLength = data.Length;
-                byte[] row = new byte[4];
-                for (int i = 0; i < data.Length; i += 4)
-                {
-                    for (int j = 0; j < 4; j++)
-                        if (i + j < data.Length)
-                            row[j] = data[i + j];
-                        else
-                            break;
-
-                    for (int k = 7; k > -1; k--)
+                //if (tileset.TilesetType == TilesetType.Tileset4FEEF)
+                //{
+                    byte[] data = Data.GetRange(tileset.ID, tileset.Length).ToArray();
+                    //string hex = string.Empty;
+                    //foreach (byte b in data)
+                    //    hex += " " + b.ToString();
+                    data = Decompress(tileset.Compression, data);
+                    tileset.DecompressedLength = data.Length;
+                    byte[] row = new byte[4];
+                    for (int i = 0; i < data.Length; i += 4)
                     {
-                        byte pixel = GetPixel(row, k);
-                        if (tileset.Masked)
-                            pixel = pixel == 1 ? (byte)0 : (byte)(pixel / 2);
-                        tileset.Pixels.Add(pixel);
+                        for (int j = 0; j < 4; j++)
+                            if (i + j < data.Length)
+                                row[j] = data[i + j];
+                            else
+                                break;
+
+                        for (int k = 7; k > -1; k--)
+                        {
+                            byte pixel = GetPixel(row, k);
+                            if (tileset.Masked)
+                                pixel = pixel == 1 ? (byte)0 : (byte)(pixel / 2);
+                            tileset.Pixels.Add(pixel);
+                        }
                     }
-                }
+                //}
             }
         }
 
@@ -155,13 +158,15 @@ namespace GoldenAxeEditor.Data
                         {
                             byte b1 = data[i];
                             byte b2 = data[i + 1];
-                            Tile tile = new Tile();
-                            tile.FlipX = (b2 & (1 << 1)) != 0;
-                            tile.FlipY = (b2 & (1 << 2)) != 0;
-                            tile.PaletteIndex = (b2 & (1 << 3)) != 0 ? 1 : 0;
-                            tile.Priority = (b2 & (1 << 4)) != 0;
-                            tile.Flags = GetTileFlags(b2);
-                            tile.TileID = GetTileID(b1, b2);
+                            Tile tile = new Tile
+                            {
+                                FlipX = (b2 & (1 << 1)) != 0,
+                                FlipY = (b2 & (1 << 2)) != 0,
+                                PaletteIndex = (b2 & (1 << 3)) != 0 ? 1 : 0,
+                                Priority = (b2 & (1 << 4)) != 0,
+                                Flags = GetTileFlags(b2),
+                                TileID = GetTileID(b1, b2)
+                            };
                             tilemap.Tiles.Add(tile);
                         }
                     }
@@ -170,8 +175,7 @@ namespace GoldenAxeEditor.Data
                         for (int i = 0; i < data.Length; i++)
                         {
                             byte b1 = data[i];
-                            Tile tile = new Tile();
-                            tile.TileID = b1;
+                            Tile tile = new Tile { TileID = b1 };
                             tilemap.Tiles.Add(tile);
                         }
                     }
@@ -208,7 +212,7 @@ namespace GoldenAxeEditor.Data
             }
             foreach (Tileset tileset in Tilesets)
             {
-                if (!tileset.HasEdits)
+                if (!tileset.HasEdits || tileset.Compression != CompressionType.None)
                     continue;
 
                 data.RemoveRange(tileset.ID, tileset.Length);
@@ -217,7 +221,7 @@ namespace GoldenAxeEditor.Data
             }
             foreach (Tilemap tilemap in Tilemaps)
             {
-                if (!tilemap.HasEdits || tilemap.ID < 0)
+                if (!tilemap.HasEdits || tilemap.ID < 0 || tilemap.Compression != CompressionType.None)
                     continue;
 
                 if ((EnumMethods.GetColumns(tilemap.TilemapType) != tilemap.Columns || EnumMethods.GetRows(tilemap.TilemapType) != tilemap.Rows) && tilemap.Compression == CompressionType.None)
@@ -243,8 +247,8 @@ namespace GoldenAxeEditor.Data
         {
             switch (type)
             {
-                case CompressionType.PhantasyStarRLE: return ObjectID.PSRLEDecompress(data);
-                case CompressionType.ZeroSpace: return ObjectID.ZeroSpaceDecompress(data);
+                case CompressionType.Planar: return ObjectID.DecompressPlanar(data);
+                case CompressionType.Linear: return ObjectID.DecompressLinear(data);
                 default: return data;
             }
         }

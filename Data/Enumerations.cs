@@ -31,10 +31,10 @@ namespace GoldenAxeEditor.Data
     {
         [Description("None")]
         None = 0,
-        [Description("Phantasy Star RLE")]
-        PhantasyStarRLE = 1,
-        [Description("Zero Space")]
-        ZeroSpace = 2
+        [Description("Planar")]
+        Planar = 1,
+        [Description("Linear")]
+        Linear = 2
     }
 
     /// <summary>
@@ -749,17 +749,17 @@ namespace GoldenAxeEditor.Data
         [Description("End Screen 1")]
         [PaletteID(45184)]
         [TilesetID(91067)]
-        [TilemapIDs(new int[] { 78918 })]
+        [TilemapIDs(new int[] { 78917 })]
         EndScreen1 = 136,
         [Description("End Screen 2")]
         [PaletteID(45184)]
         [TilesetID(91067)]
-        [TilemapIDs(new int[] { 78631 })]
+        [TilemapIDs(new int[] { 78630 })]
         EndScreen2 = 137,
         [Description("End Screen 3")]
         [PaletteID(45184)]
         [TilesetID(71894)]
-        [TilemapIDs(new int[] { 77571 })]
+        [TilemapIDs(new int[] { 77570 })]
         EndScreen3 = 138,
         [Description("Score Screen")]
         [PaletteID(45088)]
@@ -790,18 +790,30 @@ namespace GoldenAxeEditor.Data
         [Offset(0)]
         [OffsetID(0)]
         Palette102C = 4140,
-        [Length(32)]
+        [Length(16)]
         [Offset(0)]
         [OffsetID(0)]
         Palette104C = 4172,
-        [Length(32)]
+        [Length(16)]
+        [Offset(0)]
+        [OffsetID(0)]
+        Palette105C = 4188,
+        [Length(16)]
         [Offset(0)]
         [OffsetID(0)]
         Palette106C = 4204,
-        [Length(32)]
+        [Length(16)]
+        [Offset(0)]
+        [OffsetID(0)]
+        Palette107C = 4220,
+        [Length(16)]
         [Offset(0)]
         [OffsetID(0)]
         Palette108C = 4236,
+        [Length(16)]
+        [Offset(0)]
+        [OffsetID(0)]
+        Palette1092 = 4252,
         [Length(8)]
         [Offset(8)]
         [OffsetID(0)]
@@ -870,7 +882,7 @@ namespace GoldenAxeEditor.Data
         TilemapD9F8 = 55800,
         // Magic Select
         [Length(394)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Columns(32)]
         [Rows(24)]
         [Offset(0)]
@@ -899,36 +911,36 @@ namespace GoldenAxeEditor.Data
         TilemapFont = -2,
         // Title Screen
         [Length(456)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Columns(32)]
         [Rows(24)]
         [Offset(0)]
         [UseFlags(true)]
         Tilemap1158F = 71055,
         // End Screen 3
-        [Length(278)]
-        [Compression(CompressionType.ZeroSpace)]
+        [Length(365)]
+        [Compression(CompressionType.Linear)]
         [Columns(16)]
         [Rows(24)]
         [Offset(0)]
         [UseFlags(false)]
-        Tilemap12F03 = 77571,
+        Tilemap12F02 = 77570,
         // End Screen 2
-        [Length(278)]
-        [Compression(CompressionType.ZeroSpace)]
+        [Length(279)]
+        [Compression(CompressionType.Linear)]
         [Columns(16)]
         [Rows(20)]
         [Offset(0)]
         [UseFlags(false)]
-        Tilemap13327 = 78631,
+        Tilemap13326 = 78630,
         // End Screen 1
-        [Length(229)]
-        [Compression(CompressionType.ZeroSpace)]
+        [Length(230)]
+        [Compression(CompressionType.Linear)]
         [Columns(16)]
         [Rows(16)]
         [Offset(0)]
         [UseFlags(false)]
-        Tilemap13446 = 78918,
+        Tilemap13445 = 78917,
         // Map
         [Compression(CompressionType.None)]
         [Columns(12)]
@@ -4262,49 +4274,49 @@ namespace GoldenAxeEditor.Data
         TilesetCA78 = 51832,
         // Magic Select
         [Length(3321)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         TilesetE8F8 = 59640,
         // Title Screen
         [Length(5519)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset10000 = 65536,
         // End Screen 3
         [Length(5676)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset118D6 = 71894,
         // HUD
         [Length(1120)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset136D6 = 79574,
         // Font
         [Length(323)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset144C2 = 83138,
         // Map Quill
         [Length(238)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset14605 = 83461,
         // Map
         [Length(6840)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset146F3 = 83699,
         // End Screen 1 and 2
         [Length(7237)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset163BB = 91067,
@@ -4400,25 +4412,25 @@ namespace GoldenAxeEditor.Data
         Tileset2A150 = 172368,
         // Score Screen
         [Length(1067)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset2AFD0 = 176080,
         // End Rating Strength
         [Length(594)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset2B4DF = 177375,
         // Continue/Game Over 1
         [Length(1239)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset2B7FE = 178174,
         // Continue/Game Over 2
         [Length(1164)]
-        [Compression(CompressionType.PhantasyStarRLE)]
+        [Compression(CompressionType.Planar)]
         [Offset(0)]
         [Masked(false)]
         Tileset2B849 = 178249,
