@@ -1,7 +1,7 @@
 # SMS Golden Axe Editor
 Editing tool for Sega Master System's Golden Axe (Alpha 1.0)
 
-App: <a href="https://github.com/xfixium/SMSGoldenAxeEditor/blob/master/GoldenAxeEditor.exe">SMS Golden Axe Editor</a><br /><br />
+App: <a href="https://github.com/xfixium/SMSGoldenAxeEditor/raw/master/GoldenAxeEditor.exe">SMS Golden Axe Editor</a><br /><br />
 Screen Caps:<br />
 <a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_19.png">Screen 01</a><br />
 <a href="http://www.pyxosoft.com/projects/sms_golden_axe/screens/screen_20.png">Screen 02</a><br />
@@ -18,6 +18,5 @@ Fix tile selection on upper tiles on the tileset edit control<br />
 Finish replace tiles functionality<br />
 Implement unedited sprite checkbox option<br />
 Add compression write<br />
-Fix zero space compression/decompression<br />
 Add hex export functionality<br />
 Add text edit functionality<br />
